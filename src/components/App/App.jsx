@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import NotFound from "components/NotFound/NotFound";
 import ContactsPage from 'pages/ContactsPage';
 import Register from 'pages/Register';
 import Login from 'pages/Login';
@@ -10,6 +11,7 @@ import { RestrictedRoute } from 'components/RestictedRoute';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { refreshUser } from 'redux/auth/operations';
+
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
@@ -42,6 +44,7 @@ export const App = () => {
             <RestrictedRoute redirectTo="/contacts" component={<Login />} />
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
